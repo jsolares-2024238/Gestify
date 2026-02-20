@@ -19,8 +19,8 @@ export const config = {
     enableSsl: process.env.SMTP_ENABLE_SSL === 'true',
     username: process.env.SMTP_USERNAME,
     password: process.env.SMTP_PASSWORD,
-    fromEmail: process.env.EMAIL_FROM,
-    fromName: process.env.EMAIL_FROM_NAME,
+    fromEmail: process.env.SMTP_FROM_EMAIL,
+    fromName: process.env.SMTP_FROM_NAME,
   },
 
   // File Upload Configuration (aligned with .NET FileValidator)
