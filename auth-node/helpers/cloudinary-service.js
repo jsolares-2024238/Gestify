@@ -73,26 +73,22 @@ export const deleteImage = async (imagePath) => {
   }
 };
 
+const baseUrl = config.cloudinary.baseUrl;
+const folder = config.cloudinary.folder;
+const defaultAvatar = config.cloudinary.defaultAvatarPath;
+
 export const getFullImageUrl = (imagePath) => {
-  if (!imagePath) {
-    return getDefaultAvatarUrl();
-  }
-
-  const baseUrl = config.cloudinary.baseUrl;
-  const folder = config.cloudinary.folder;
-
-  const pathToUse = !imagePath
-    ? config.cloudinary.defaultAvatarPath
-    : imagePath.includes('/')
+  const finalPath = imagePath
+    ? imagePath.includes('/')
       ? imagePath
-      : `${folder}/${imagePath}`;
+      : `${folder}/${imagePath}`
+    : defaultAvatar;
 
-  return `${baseUrl}${pathToUse}`;
+  return `${baseUrl}${finalPath}`;
 };
 
 export const getDefaultAvatarUrl = () => {
-  const defaultPath = config.cloudinary.defaultAvatarPath;
-  return getFullImageUrl(defaultPath);
+  return `${baseUrl}${defaultAvatar}`; 
 };
 
 export const getDefaultAvatarPath = () => {
